@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import Layout from '@/layout/Index.vue';
-import BlankLayout from '@/layout/BlankLayout.vue';
+import BlankLayout from '@/layout/components/BlankLayout/BlankLayout.vue';
 // : Array<RouteRecordRaw>
 export const routes = [
 	{
@@ -50,7 +50,7 @@ export const routes = [
 		path: '/login',
 		name: 'Login',
 		hidden: true,
-		component: () => import('@/views/Login.vue')
+		component: () => import('@/pages/login/index.vue')
 	}
 ];
 
