@@ -36,12 +36,6 @@ export const routes = [
 						meta: { title: '表单' },
 					}
 				]
-			},
-			{
-				path: 'lowCodeManage',
-				component: () => import('@/views/low_code_Manage/index.vue'),
-				name: 'lowCodeManage',
-				meta: { title: '低代码管理', icon: 'el-icon-s-data' }
 			}
 
 		]
