@@ -25,20 +25,35 @@
                 <template v-slot:dateHeader>
                     <el-tag type="success">日期</el-tag>
                 </template>
-                <template v-slot:date="scope">{{scope.data.date}}自定义slot</template>
+                <template v-slot:date="scope"
+                    >{{ scope.data.date }}自定义slot</template
+                >
                 <template v-slot:action="scope">
-                    <span class="btn" @click="handleCLick('edit', scope.data)">编辑</span>
+                    <span class="btn" @click="handleCLick('edit', scope.data)"
+                        >编辑</span
+                    >
                     <el-divider direction="vertical"></el-divider>
-                    <span class="btn red" @click="handleCLick('del', scope.data)">删除</span>
+                    <span
+                        class="btn red"
+                        @click="handleCLick('del', scope.data)"
+                        >删除</span
+                    >
                 </template>
             </HeroTable>
         </div>
-        <el-dialog title="提示" v-model="dialogVisible" width="30%" :before-close="handleClose">
+        <el-dialog
+            title="提示"
+            v-model="dialogVisible"
+            width="30%"
+            :before-close="handleClose"
+        >
             <span>这是一段信息</span>
             <template #footer>
                 <span class="dialog-footer">
                     <el-button @click="dialogVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                    <el-button type="primary" @click="dialogVisible = false"
+                        >确 定</el-button
+                    >
                 </span>
             </template>
         </el-dialog>
