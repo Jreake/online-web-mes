@@ -1,16 +1,12 @@
-import { routes } from '@/router/index';
+import { routes } from "@/router/index";
 
 const state = {
 	routes: routes
 };
 
-const mutations = {
+const mutations = {};
 
-};
-
-const actions = {
-
-};
+const actions = {};
 
 export default {
 	namespaced: true,

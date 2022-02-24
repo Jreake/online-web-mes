@@ -1,34 +1,51 @@
 <template>
-  <div v-if="!item.hidden" class="menu-wrapper">
-   <template v-if="hasOneShowingChild(item.children,item) && !onlyOneChild.children && onlyOneChild.noShowingChildren && !item.alwaysShow">
-      <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-				<i :class="[onlyOneChild.meta.icon||(item.meta&&item.meta.icon), 'icon']"></i>
-				<template #title><span>{{onlyOneChild.meta.title}}</span></template>
-      </el-menu-item>
-    </template>
-    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)">
+	<div v-if="!item.hidden" class="menu-wrapper">
+		<template
+			v-if="
+				hasOneShowingChild(item.children, item) &&
+					!onlyOneChild.children &&
+					onlyOneChild.noShowingChildren &&
+					!item.alwaysShow
+			"
+		>
+			<el-menu-item
+				:index="resolvePath(onlyOneChild.path)"
+				:class="{ 'submenu-title-noDropdown': !isNest }"
+			>
+				<i
+					:class="[
+						onlyOneChild.meta.icon || (item.meta && item.meta.icon),
+						'icon'
+					]"
+				></i>
+				<template #title
+					><span>{{ onlyOneChild.meta.title }}</span></template
+				>
+			</el-menu-item>
+		</template>
+		<el-submenu v-else ref="subMenu" :index="resolvePath(item.path)">
 			<template v-slot:title>
 				<i :class="[item.meta && item.meta.icon, 'icon']"></i>
-				<span>{{item.meta.title}}</span>
+				<span>{{ item.meta.title }}</span>
 			</template>
-      <sidebar-item
-        v-for="child in item.children"
-        :key="child.path"
-        :is-nest="true"
-        :item="child"
-        :base-path="resolvePath(child.path)"
-        class="nest-menu"
-      />
-    </el-submenu>
-  </div>
+			<sidebar-item
+				v-for="child in item.children"
+				:key="child.path"
+				:is-nest="true"
+				:item="child"
+				:base-path="resolvePath(child.path)"
+				class="nest-menu"
+			/>
+		</el-submenu>
+	</div>
 </template>
 
 <script lang="ts">
-import { toRefs, reactive, defineComponent } from 'vue';
-import path from 'path';
+import { toRefs, reactive, defineComponent } from "vue";
+import path from "path";
 
 export default defineComponent({
-	name: 'SidebarItem',
+	name: "SidebarItem",
 	props: {
 		item: {
 			type: Object,
@@ -40,12 +57,12 @@ export default defineComponent({
 		},
 		basePath: {
 			type: String,
-			default: ''
+			default: ""
 		}
 	},
-	setup (props) {
+	setup(props) {
 		const state = reactive({
-			onlyOneChild: { children: null, path: '', meta: { icon: '', title: '' } }
+			onlyOneChild: { children: null, path: "", meta: { icon: "", title: "" } }
 		});
 		const hasOneShowingChild = (children = [], parent: any) => {
 			const showingChildren = children.filter((item: any) => {
@@ -61,7 +78,7 @@ export default defineComponent({
 				return true;
 			}
 			if (showingChildren.length === 0) {
-				state.onlyOneChild = { ...parent, path: '', noShowingChildren: true };
+				state.onlyOneChild = { ...parent, path: "", noShowingChildren: true };
 				return true;
 			}
 			return false;
