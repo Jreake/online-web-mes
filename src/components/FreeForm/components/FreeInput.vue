@@ -1,5 +1,9 @@
 <template>
-  <el-form-item :label="formConfig.label" :rules="formConfig.rules">
+  <el-form-item
+    :label="formConfig.label"
+    :prop="`${formConfig.valueKey}`"
+    :rules="formConfig.rules"
+  >
     <el-input
       v-model="value[endKey]"
       :disabled="setDisabled(formConfig, modelValue)"
@@ -69,6 +73,7 @@ export default defineComponent({
     })
     const setDisabled = inject("setDisabled")
     const setValMap = inject("setValMap")
+    const setEndKey = inject("setEndKey")
     watch(
       () => props.config,
       () => {
@@ -78,15 +83,16 @@ export default defineComponent({
         if (rulesPattern) {
           config.rules = [
             {
-              pattern: rulesPattern,
+              required: true,
+              pattern: new RegExp(rulesPattern),
               message: proxy.$t(errorMessage || "输入错误"),
               trigger: "blur"
             }
           ]
         }
         state.value = setValMap(props.modelValue, config.valueKey)
-        const valueKeyArr = config.valueKey.split(".")
-        state.endKey = valueKeyArr[valueKeyArr.length - 1]
+        state.endKey = setEndKey(config.valueKey)
+
         formConfig.value = config
       },
       { immediate: true }

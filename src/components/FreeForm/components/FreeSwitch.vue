@@ -4,8 +4,6 @@
       v-model="value[endKey]"
       :disabled="setDisabled(formConfig, modelValue)"
       :inline-prompt="true"
-      :active-text="formConfig.activeText"
-      :inactive-text="formConfig.inactiveText"
       :active-value="formConfig.activeValue"
       :inactive-value="formConfig.inactiveValue"
     ></el-switch>
@@ -24,7 +22,7 @@ import {
   reactive,
   ref,
   toRefs,
-  inject
+  inject,
 } from "vue"
 /**------hooks--------*/
 /**------components---*/
@@ -35,7 +33,7 @@ export default defineComponent({
   props: {
     modelValue: {
       type: Object,
-      required: true
+      required: true,
     },
     config: {
       type: Object,
@@ -45,13 +43,11 @@ export default defineComponent({
           label: "",
           valueKey: "",
           defaultValue: "",
-          activeText: "",
           activeValue: "",
-          inactiveText: "",
-          inactiveValue: ""
+          inactiveValue: "",
         }
-      }
-    }
+      },
+    },
   },
   setup(props, ctx) {
     const { proxy } = getCurrentInstance()
@@ -60,18 +56,17 @@ export default defineComponent({
       label: "",
       valueKey: "",
       defaultValue: "",
-      activeText: "开",
       activeValue: true,
-      inactiveText: "关",
-      inactiveValue: false
+      inactiveValue: false,
     }
     const setValMap = inject("setValMap")
+    const setEndKey = inject("setEndKey")
     const setDisabled = inject("setDisabled")
     const formConfig = ref({ ...defaultConfig })
     const state = reactive({
       value: {},
       endKey: "",
-      formConfig
+      formConfig,
     })
     watch(
       () => props.config,
@@ -79,8 +74,8 @@ export default defineComponent({
         const config = proxy.$lodash.cloneDeep(defaultConfig)
         Object.assign(config, props.config)
         state.value = setValMap(props.modelValue, config.valueKey)
-        const valueKeyArr = config.valueKey.split(".")
-        state.endKey = valueKeyArr[valueKeyArr.length - 1]
+        state.endKey = setEndKey(config.valueKey)
+
         formConfig.value = config
       },
       { immediate: true }
@@ -88,9 +83,9 @@ export default defineComponent({
     return {
       formConfig,
       ...toRefs(state),
-      setDisabled
+      setDisabled,
     }
-  }
+  },
 })
 </script>
 <style scoped lang="scss"></style>

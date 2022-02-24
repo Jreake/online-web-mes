@@ -11,6 +11,9 @@ import CodeEditor from "bin-code-editor";
 import "@/utils/lib/styles/index.css";
 import Editor from "@/components/bin-ace-editor";
 import "@/components/CodeMirror/index";
+import lodash from "lodash";
+
+import FreeForm from "@/components/FreeForm/index.vue";
 
 // 测试
 import "@/utils/Promise/Promise";
@@ -22,9 +25,11 @@ app.config.performance = true;
 app.use(ElementPlus, { size: "small", locale });
 
 app.config.globalProperties.$http = axios;
+app.config.globalProperties.$lodash = lodash;
 
 app.use(store);
 app.use(router);
 app.use(CodeEditor);
 app.component(Editor.name, Editor);
+app.component(FreeForm.name, FreeForm);
 app.mount("#app");

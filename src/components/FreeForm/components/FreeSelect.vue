@@ -87,6 +87,7 @@ export default defineComponent({
       options: []
     }
     const setValMap = inject("setValMap")
+    const setEndKey = inject("setEndKey")
     const setDisabled = inject("setDisabled")
     const formConfig = ref({ ...defaultConfig })
     const state = reactive({
@@ -103,15 +104,15 @@ export default defineComponent({
         if (rulesPattern) {
           config.rules = [
             {
-              pattern: rulesPattern,
+              required: true,
+              pattern: new RegExp(rulesPattern),
               message: proxy.$t(errorMessage || "输入错误"),
               trigger: "blur"
             }
           ]
         }
         state.value = setValMap(props.modelValue, config.valueKey)
-        const valueKeyArr = config.valueKey.split(".")
-        state.endKey = valueKeyArr[valueKeyArr.length - 1]
+        state.endKey = setEndKey(config.valueKey)
         formConfig.value = config
       },
       { immediate: true }

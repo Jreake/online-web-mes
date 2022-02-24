@@ -1,0 +1,99 @@
+[
+  {
+    "type": "Slot",
+    "span": 24,
+    "slotName": "RMS_RCS"
+  },
+  {
+    "type": "FromTable",
+    "span": 24,
+    "header": [
+      {
+        "label": "服务器IP",
+        "span": 12
+      },
+      {
+        "label": "服务器端口号",
+        "span": 12
+      }
+    ],
+    "form": [
+      {
+        "label": "RMS",
+        "row": [
+          {
+            "type": "Input",
+            "label": "",
+            "valueKey": "rms_ip.ip",
+            "defaultValue": "",
+            "disableKey": "rms_rcs",
+            "disableVal": ["rcs"]
+          },
+          {
+            "type": "Input",
+            "label": "",
+            "valueKey": "rms_ip.port",
+            "defaultValue": "",
+            "disableKey": "rms_rcs",
+            "disableVal": ["rcs"]
+          }
+        ]
+      },
+      {
+        "label": "RCS",
+        "row": [
+          {
+            "type": "Input",
+            "label": "",
+            "valueKey": "rcs_ip.ip",
+            "defaultValue": "",
+            "disableKey": "rms_rcs",
+            "disableVal": ["rms"]
+          },
+          {
+            "type": "Input",
+            "label": "",
+            "valueKey": "rcs_ip.port",
+            "defaultValue": "",
+            "disableKey": "rms_rcs",
+            "disableVal": ["rms"]
+          }
+        ]
+      },
+      {
+        "label": "RM",
+        "row": [
+          {
+            "type": "Input",
+            "label": "",
+            "valueKey": "rm_ip.ip",
+            "defaultValue": ""
+          },
+          {
+            "type": "Input",
+            "label": "",
+            "valueKey": "rm_ip.port",
+            "defaultValue": ""
+          }
+        ]
+      },
+      {
+        "label": "SCS",
+        "row": [
+          {
+            "type": "Input",
+            "label": "",
+            "valueKey": "scs_ip.ip",
+            "defaultValue": ""
+          },
+          {
+            "type": "Input",
+            "label": "",
+            "valueKey": "scs_ip.port",
+            "defaultValue": ""
+          }
+        ]
+      }
+    ]
+  }
+]

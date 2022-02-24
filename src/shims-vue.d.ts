@@ -5,3 +5,10 @@ declare module '*.vue' {
   export default component
 
 }
+declare interface Window {
+  Logger: any
+  DocumentTouch: any
+}
+// declare module "json2yaml"
+// declare module "js-yaml"
+// declare module "lodash"

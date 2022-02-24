@@ -46,6 +46,12 @@ export const routes = [
 						component: () => import("@/views/SeniorForm.vue"),
 						name: "SeniorForm",
 						meta: { title: "高级表单" }
+					},
+					{
+						path: "freeForm",
+						component: () => import("@/views/FreeForm.vue"),
+						name: "FreeForm",
+						meta: { title: "自动表单" }
 					}
 				]
 			}
