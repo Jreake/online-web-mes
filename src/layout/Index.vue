@@ -51,19 +51,19 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-/deep/ .el-main {
+:deep(.el-main) {
 	padding: 0;
 }
-/deep/ .el-header {
+:deep(.el-header) {
 	-webkit-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 	box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 	padding-right: 20px;
 	padding-left: 0;
 }
-/deep/ .el-aside {
+:deep(.el-aside) {
 	box-shadow: rgb(241, 241, 241) 2px 0px 6px;
 }
-/deep/.footer-text {
+:deep(.footer-text) {
 	line-height: 60px;
 	text-align: center;
 	color: rgba(0, 0, 0, 0.25);
