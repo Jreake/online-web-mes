@@ -52,6 +52,12 @@ export const routes = [
 						component: () => import("@/views/FreeForm.vue"),
 						name: "FreeForm",
 						meta: { title: "自动表单" }
+					},
+					{
+						path: "textForm",
+						component: () => import("@/views/TextForm.vue"),
+						name: "TextForm",
+						meta: { title: "测试" }
 					}
 				]
 			}

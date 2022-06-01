@@ -12,8 +12,10 @@ import "@/utils/lib/styles/index.css";
 import Editor from "@/components/bin-ace-editor";
 import "@/components/CodeMirror/index";
 import lodash from "lodash";
+import "./styles/index.scss";
 
 import FreeForm from "@/components/FreeForm/index.vue";
+import TextForm from "@/components/TextForm/index.vue";
 
 // 测试
 import "@/utils/Promise/Promise";
@@ -32,4 +34,5 @@ app.use(router);
 app.use(CodeEditor);
 app.component(Editor.name, Editor);
 app.component(FreeForm.name, FreeForm);
+app.component(TextForm.name, TextForm);
 app.mount("#app");
