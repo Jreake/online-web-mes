@@ -25,7 +25,8 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "src/utils/methods/vmodule.js"
+    "src/utils/methods/vmodule.js",
+    "src/utils/test.js"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,5 +1,8 @@
 <template>
 	<div class="top-bar">
+		<div class="collapse">
+			<p class="title">{{ $t("new.activityName") }}</p>
+		</div>
 		<div class="collapse" @click="toggleSideBar">
 			<i
 				:class="[
