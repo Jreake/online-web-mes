@@ -1,9 +1,11 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import { ElMessage } from "element-plus";
-const instance = axios.create({
-	baseURL: process.env.VUE_APP_API_BASE_URL || "",
-	timeout: 120 * 1000,
-	withCredentials: true
+const baseURL = "/api";
+const service = axios.create({
+	baseURL,
+	timeout: 30 * 1000,
+	withCredentials: true,
+	headers: {}
 });
 
 const err = error => {
@@ -43,18 +45,17 @@ const err = error => {
 	return Promise.reject(error);
 };
 
-instance.interceptors.request.use((config: AxiosRequestConfig) => {
+service.interceptors.request.use((config: AxiosRequestConfig) => {
 	return config;
 }, err);
 
-instance.interceptors.response.use((response: AxiosResponse) => {
+service.interceptors.response.use((response: AxiosResponse) => {
 	const config: AxiosRequestConfig = response.config || "";
-
-	const code = Number(response.data.status);
-	if (code === 200) {
+	const code = Number(response.data.code);
+	if (code === 0) {
 		if (config && config.successNotice) {
 			ElMessage({
-				message: response.data.msg,
+				message: response.data.message,
 				type: "success"
 			});
 		}
@@ -73,4 +74,4 @@ instance.interceptors.response.use((response: AxiosResponse) => {
 	}
 }, err);
 
-export default instance;
+export default service;
